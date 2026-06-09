@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GitHub README Generator — Free Online Tool</title>
+<meta name="description" content="Free online GitHub README.md generator. Create professional README files for your projects with live preview, templates, badges, and more.">
+<meta name="keywords" content="README generator, GitHub README, markdown generator, documentation tool">
+<meta property="og:title" content="GitHub README Generator — Free Online Tool">
+<meta property="og:description" content="Create professional README.md files for your GitHub projects instantly.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://readme-gen.pages.dev">
+<meta property="og:image" content="https://readme-gen.pages.dev/og-banner.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="GitHub README Generator — Free Online Tool">
+<meta name="twitter:description" content="Create professional README.md files for your GitHub projects instantly.">
+<link rel="canonical" href="https://readme-gen.pages.dev">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "GitHub README Generator",
+  "description": "Free online tool to generate professional GitHub README.md files",
+  "url": "https://readme-gen.pages.dev",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0d1117;--surface:#161b22;--border:#30363d;--text:#e6edf3;--muted:#8b949e;--accent:#58a6ff;--accent2:#3fb950;--danger:#f85149;--radius:8px}
+html{font-size:15px;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,sans-serif;line-height:1.6;min-height:100vh}
+a{color:var(--accent);text-decoration:none}
+h1,h2,h3,h4{line-height:1.3}
+input,textarea,select,button{font-family:inherit;font-size:.9rem}
+input,textarea,select{background:var(--bg);color:var(--text);border:1px solid var(--border);border-radius:var(--radius);padding:.55rem .75rem;width:100%;transition:border-color .2s}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--accent)}
+textarea{resize:vertical;min-height:80px}
+label{display:block;font-weight:600;margin-bottom:.3rem;font-size:.85rem;color:var(--muted)}
+button{cursor:pointer;border:none;border-radius:var(--radius);padding:.5rem 1rem;font-weight:600;transition:background .2s,transform .1s}
+button:active{transform:scale(.97)}
+.badge-grid{display:flex;flex-wrap:wrap;gap:.4rem}
+.badge-chip{display:inline-flex;align-items:center;gap:.3rem;padding:.3rem .65rem;border-radius:20px;border:1px solid var(--border);background:var(--surface);cursor:pointer;font-size:.78rem;transition:all .2s;user-select:none}
+.badge-chip.active{border-color:var(--accent);background:rgba(88,166,255,.15);color:var(--accent)}
+.badge-chip:hover{border-color:var(--accent)}
+.feature-row,.faq-row{display:flex;gap:.5rem;margin-bottom:.5rem;align-items:center}
+.feature-row input,.faq-row input{flex:1}
+.remove-btn{background:transparent;color:var(--danger);padding:.3rem .5rem;font-size:1.1rem;line-height:1}
+.remove-btn:hover{background:rgba(248,81,73,.15)}
+.add-btn{background:transparent;color:var(--accent);padding:.3rem .6rem;font-size:.85rem}
+.add-btn:hover{background:rgba(88,166,255,.1)}
+.toggle{position:relative;width:42px;height:22px;background:var(--border);border-radius:11px;cursor:pointer;transition:background .2s;flex-shrink:0}
+.toggle.on{background:var(--accent)}
+.toggle::after{content:'';position:absolute;top:2px;left:2px;width:18px;height:18px;background:#fff;border-radius:50%;transition:transform .2s}
+.toggle.on::after{transform:translateX(20px)}
+.toggle-row{display:flex;align-items:center;gap:.75rem;margin-bottom:.7rem}
+.toggle-row span{font-size:.85rem;color:var(--muted)}
+.tabs{display:flex;gap:.25rem;margin-bottom:1rem;flex-wrap:wrap}
+.tab{padding:.4rem .8rem;border-radius:var(--radius);background:var(--surface);color:var(--muted);font-size:.8rem;font-weight:600;transition:all .2s}
+.tab:hover{color:var(--text)}
+.tab.active{background:var(--accent);color:#fff}
+.header-bar{background:var(--surface);border-bottom:1px solid var(--border);padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem}
+.header-bar h1{font-size:1.15rem;color:var(--accent)}
+.header-bar p{font-size:.8rem;color:var(--muted)}
+.app{display:grid;grid-template-columns:1fr 1fr;gap:0;min-height:calc(100vh - 60px)}
+.panel{padding:1.25rem;overflow-y:auto;max-height:calc(100vh - 60px)}
+.panel-left{border-right:1px solid var(--border)}
+.section{margin-bottom:1.5rem}
+.section h3{font-size:.9rem;color:var(--accent);margin-bottom:.75rem;padding-bottom:.4rem;border-bottom:1px solid var(--border)}
+.output-bar{display:flex;gap:.5rem;margin-bottom:1rem;flex-wrap:wrap}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:#4090e0}
+.btn-success{background:var(--accent2);color:#fff}
+.btn-success:hover{background:#2ea043}
+.btn-outline{background:transparent;color:var(--text);border:1px solid var(--border)}
+.btn-outline:hover{background:var(--surface)}
+.preview-body{background:var(--surface);border-radius:var(--radius);padding:1.25rem;min-height:300px;line-height:1.7}
+.preview-body h1{font-size:1.6rem;margin:1rem 0 .5rem;border-bottom:1px solid var(--border);padding-bottom:.3rem}
+.preview-body h1:first-child{margin-top:0}
+.preview-body h2{font-size:1.3rem;margin:1.2rem 0 .4rem;border-bottom:1px solid var(--border);padding-bottom:.3rem}
+.preview-body h3{font-size:1.1rem;margin:1rem 0 .3rem}
+.preview-body p{margin:.4rem 0}
+.preview-body ul,.preview-body ol{margin:.4rem 0 .4rem 1.5rem}
+.preview-body code{background:var(--bg);padding:.15rem .4rem;border-radius:4px;font-size:.85em;color:var(--accent)}
+.preview-body pre{background:var(--bg);padding:.75rem;border-radius:var(--radius);overflow-x:auto;margin:.5rem 0}
+.preview-body pre code{background:none;padding:0}
+.preview-body img{max-width:100%;border-radius:var(--radius);margin:.5rem 0}
+.preview-body a{color:var(--accent)}
+.preview-body blockquote{border-left:3px solid var(--accent);padding:.3rem .8rem;margin:.5rem 0;color:var(--muted)}
+.preview-body hr{border:none;border-top:1px solid var(--border);margin:1rem 0}
+.toast{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--accent2);color:#fff;padding:.6rem 1.2rem;border-radius:var(--radius);font-weight:600;font-size:.85rem;transform:translateY(100px);opacity:0;transition:all .3s}
+.toast.show{transform:translateY(0);opacity:1}
+.cross-links{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.5rem}
+.cross-links a{padding:.3rem .7rem;border:1px solid var(--border);border-radius:var(--radius);font-size:.78rem;color:var(--muted);transition:all .2s}
+.cross-links a:hover{border-color:var(--accent);color:var(--accent)}
+.email-widget{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:.75rem;margin-top:.5rem}
+.email-widget input{margin-top:.3rem}
+@media(max-width:768px){
+  .app{grid-template-columns:1fr}
+  .panel{max-height:none}
+  .panel-left{border-right:none;border-bottom:1px solid var(--border)}
+  .header-bar{justify-content:center;text-align:center}
+}
+</style>
+</head>
+<body>
+<div class="header-bar">
+  <div>
+    <h1>⚡ GitHub README Generator</h1>
+    <p>Free online tool — create professional README.md files instantly</p>
+  </div>
+  <div class="cross-links">
+    <a href="#templates">Templates</a>
+    <a href="#preview">Preview</a>
+    <a href="https://github.com/Chesten223" target="_blank">GitHub</a>
+  </div>
+</div>
+
+<div class="app">
+  <!-- LEFT: Form -->
+  <div class="panel panel-left">
+
+    <!-- Templates -->
+    <div class="section" id="templates">
+      <h3>📁 Template</h3>
+      <div class="tabs" id="templateTabs">
+        <div class="tab active" data-tpl="blank">Blank</div>
+        <div class="tab" data-tpl="cli">CLI Tool</div>
+        <div class="tab" data-tpl="webapp">Web App</div>
+        <div class="tab" data-tpl="library">Library</div>
+        <div class="tab" data-tpl="extension">Chrome Extension</div>
+        <div class="tab" data-tpl="api">API</div>
+      </div>
+    </div>
+
+    <!-- Basic Info -->
+    <div class="section">
+      <h3>📝 Basic Info</h3>
+      <div style="margin-bottom:.7rem">
+        <label>Project Name</label>
+        <input type="text" id="projectName" placeholder="my-awesome-project">
+      </div>
+      <div style="margin-bottom:.7rem">
+        <label>Tagline</label>
+        <input type="text" id="tagline" placeholder="A short one-liner describing your project">
+      </div>
+      <div style="margin-bottom:.7rem">
+        <label>Description</label>
+        <textarea id="description" placeholder="Detailed description of what your project does..."></textarea>
+      </div>
+    </div>
+
+    <!-- Installation -->
+    <div class="section">
+      <h3>📦 Installation</h3>
+      <div style="margin-bottom:.7rem">
+        <label>Package Manager</label>
+        <select id="pkgManager">
+          <option value="npm">npm</option>
+          <option value="pip">pip</option>
+          <option value="cargo">cargo</option>
+          <option value="go">go</option>
+          <option value="brew">brew</option>
+          <option value="custom">Custom</option>
+        </select>
+      </div>
+      <div style="margin-bottom:.7rem">
+        <label>Install Command</label>
+        <input type="text" id="installCmd" placeholder="npm install my-awesome-project">
+      </div>
+    </div>
+
+    <!-- Features -->
+    <div class="section">
+      <h3>✨ Features</h3>
+      <div id="featuresList"></div>
+      <button class="add-btn" id="addFeature">+ Add Feature</button>
+    </div>
+
+    <!-- Screenshot -->
+    <div class="section">
+      <h3>📸 Screenshots / Demo</h3>
+      <div style="margin-bottom:.7rem">
+        <label>Screenshot / Demo URL</label>
+        <input type="text" id="screenshotUrl" placeholder="https://example.com/screenshot.png">
+      </div>
+      <div>
+        <label>Alt Text</label>
+        <input type="text" id="screenshotAlt" placeholder="App Screenshot">
+      </div>
+    </div>
+
+    <!-- Badges -->
+    <div class="section">
+      <h3>🏷️ Tech Stack Badges</h3>
+      <div class="badge-grid" id="badgeGrid"></div>
+    </div>
+
+    <!-- Toggles -->
+    <div class="section">
+      <h3>⚙️ Sections</h3>
+      <div class="toggle-row">
+        <div class="toggle" id="toggleApi" data-key="api"></div>
+        <span>API Documentation</span>
+      </div>
+      <div class="toggle-row">
+        <div class="toggle" id="toggleContrib" data-key="contrib"></div>
+        <span>Contributing Guidelines</span>
+      </div>
+      <div class="toggle-row">
+        <div class="toggle" id="toggleFaq" data-key="faq"></div>
+        <span>FAQ Section</span>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="section" id="faqSection" style="display:none">
+      <h3>❓ FAQ</h3>
+      <div id="faqList"></div>
+      <button class="add-btn" id="addFaq">+ Add FAQ</button>
+    </div>
+
+    <!-- License -->
+    <div class="section">
+      <h3>⚖️ License</h3>
+      <select id="license">
+        <option value="MIT">MIT</option>
+        <option value="Apache-2.0">Apache 2.0</option>
+        <option value="GPL-3.0">GPL 3.0</option>
+        <option value="BSD-3-Clause">BSD 3-Clause</option>
+        <option value="">None</option>
+      </select>
+    </div>
+
+    <!-- Author -->
+    <div class="section">
+      <h3>👤 Author</h3>
+      <div style="margin-bottom:.7rem">
+        <label>Name</label>
+        <input type="text" id="authorName" placeholder="Your Name">
+      </div>
+      <div style="margin-bottom:.7rem">
+        <label>GitHub URL</label>
+        <input type="text" id="githubUrl" placeholder="https://github.com/username">
+      </div>
+      <div style="margin-bottom:.7rem">
+        <label>Website</label>
+        <input type="text" id="websiteUrl" placeholder="https://yoursite.com">
+      </div>
+    </div>
+
+    <!-- Email Widget -->
+    <div class="section">
+      <h3>📧 Contact</h3>
+      <div class="email-widget">
+        <label>Contact Email</label>
+        <input type="email" id="contactEmail" placeholder="you@example.com">
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RIGHT: Preview -->
+  <div class="panel" id="preview">
+    <div class="output-bar">
+      <button class="btn-primary" id="copyMd">📋 Copy Markdown</button>
+      <button class="btn-success" id="downloadMd">⬇ Download README.md</button>
+      <button class="btn-outline" id="toggleView">👁 Raw Markdown</button>
+    </div>
+    <div class="preview-body" id="previewBody"></div>
+    <pre id="rawMd" style="display:none;background:var(--surface);padding:1rem;border-radius:var(--radius);white-space:pre-wrap;word-break:break-word;font-size:.85rem;line-height:1.6"></pre>
+  </div>
+</div>
+
+<div class="toast" id="toast">Copied to clipboard!</div>
+
+<script>
+// ---- Data ----
+const BADGES = [
+  'JavaScript','TypeScript','React','Vue.js','Angular','Svelte','Next.js','Node.js',
+  'Python','Go','Rust','Java','C++','C#','Ruby','PHP','Swift','Kotlin',
+  'Docker','Kubernetes','AWS','Firebase','Vercel','Netlify',
+  'PostgreSQL','MongoDB','Redis','SQLite','GraphQL','REST API',
+  'TailwindCSS','Bootstrap','Sass','Webpack','Vite','ESLint',
+  'Jest','Vitest','Cypress','Playwright',
+  'License:MIT','License:Apache','License:GPL'
+];
+
+const TEMPLATES = {
+  blank: {},
+  cli: {
+    projectName:'my-cli-tool',tagline:'A blazing-fast CLI tool for developers',
+    description:'my-cli-tool simplifies your development workflow with powerful commands and an intuitive interface.',
+    pkgManager:'npm',installCmd:'npm install -g my-cli-tool',
+    features:['Fast execution with sub-second commands','Cross-platform (macOS, Linux, Windows)','Rich terminal output with colors and tables','Plugin system for extensibility'],
+    badges:['Node.js','TypeScript','License:MIT'],
+    license:'MIT',authorName:'Your Name',githubUrl:'https://github.com/username/my-cli-tool'
+  },
+  webapp: {
+    projectName:'my-web-app',tagline:'Modern web application built with the latest tech',
+    description:'A full-featured web application with authentication, dashboards, and real-time updates.',
+    pkgManager:'npm',installCmd:'npm install my-web-app',
+    features:['Responsive design for all devices','Real-time data synchronization','User authentication & authorization','Dark mode support'],
+    badges:['React','Next.js','TypeScript','TailwindCSS','Vercel','PostgreSQL'],
+    license:'MIT',authorName:'Your Name',githubUrl:'https://github.com/username/my-web-app',
+    screenshotUrl:'https://via.placeholder.com/800x450'
+  },
+  library: {
+    projectName:'my-lib',tagline:'A lightweight, type-safe utility library',
+    description:'my-lib provides essential utilities for JavaScript/TypeScript projects with zero dependencies.',
+    pkgManager:'npm',installCmd:'npm install my-lib',
+    features:['Zero dependencies','Full TypeScript support','Tree-shakeable','100% test coverage'],
+    badges:['TypeScript','Node.js','Jest','License:MIT'],
+    license:'MIT',authorName:'Your Name',githubUrl:'https://github.com/username/my-lib',
+    toggles:{api:true}
+  },
+  extension: {
+    projectName:'my-extension',tagline:'Browser extension that supercharges your workflow',
+    description:'A Chrome/Firefox extension that adds powerful features to your browser experience.',
+    pkgManager:'npm',installCmd:'npm run build',
+    features:['One-click activation','Customizable settings','Works on all major browsers','Keyboard shortcuts'],
+    badges:['JavaScript','TypeScript','Webpack'],
+    license:'MIT',authorName:'Your Name',githubUrl:'https://github.com/username/my-extension',
+    screenshotUrl:'https://via.placeholder.com/800x450'
+  },
+  api: {
+    projectName:'my-api',tagline:'RESTful API service with blazing-fast performance',
+    description:'A production-ready API built with modern best practices for security, rate limiting, and documentation.',
+    pkgManager:'npm',installCmd:'npm install my-api',
+    features:['RESTful endpoints with OpenAPI docs','JWT authentication','Rate limiting & request validation','Docker-ready deployment'],
+    badges:['Node.js','TypeScript','Docker','PostgreSQL','REST API','License:MIT'],
+    license:'MIT',authorName:'Your Name',githubUrl:'https://github.com/username/my-api',
+    toggles:{api:true}
+  }
+};
+
+const FAQ_DEFAULTS = [
+  {q:'How do I install this?',a:'Follow the installation instructions above.'},
+  {q:'Is it free to use?',a:'Yes, this project is open source and free to use.'},
+  {q:'Where can I report bugs?',a:'Please open an issue on the GitHub repository.'}
+];
+
+// ---- State ----
+let state = {
+  features: ['',''],
+  faqs: [],
+  badges: new Set(),
+  toggles: {api:false,contrib:false,faq:false},
+  rawView: false
+};
+
+// ---- Badge rendering ----
+function badgeUrl(name){
+  const colors = {
+    'JavaScript':'%23F7DF1E','TypeScript':'%233178C6','React':'%2361DAFB','Vue.js':'%234FC08D',
+    'Angular':'%23DD0031','Svelte':'%23FF3E00','Next.js':'%23000','Node.js':'%23339933',
+    'Python':'%233776AB','Go':'%2300ADD8','Rust':'%23000000','Java':'%23ED8B00',
+    'C++':'%2300599C','C%23':'%23239120','Ruby':'%23CC342D','PHP':'%23777BB4',
+    'Swift':'%23F05138','Kotlin':'%237F52FF','Docker':'%232496ED','Kubernetes':'%23326CE5',
+    'AWS':'%23FF9900','Firebase':'%23FFCA28','Vercel':'%23000','Netlify':'%2300C7B7',
+    'PostgreSQL':'%234169E1','MongoDB':'%2347A248','Redis':'%23DC382D','SQLite':'%23003B57',
+    'GraphQL':'%23E10098','REST%20API':'%230A66C2','TailwindCSS':'%2306B6D4',
+    'Bootstrap':'%237952B3','Sass':'%23CC6699','Webpack':'%238DD6F9','Vite':'%23646CFF',
+    'ESLint':'%234B32C3','Jest':'%23C21325','Vitest':'%236E9F18','Cypress':'%2317202C',
+    'Playwright':'%232EAD33'
+  };
+  const label = encodeURIComponent(name);
+  const color = colors[name] || '%23555';
+  return `https://img.shields.io/badge/${label}-${name.startsWith('License') ? name.split(':')[1] : 'Enabled'}-${color}?style=flat-square`;
+}
+
+function initBadges(){
+  const grid = document.getElementById('badgeGrid');
+  grid.innerHTML = '';
+  BADGES.forEach(b => {
+    const chip = document.createElement('div');
+    chip.className = 'badge-chip' + (state.badges.has(b) ? ' active' : '');
+    chip.textContent = b;
+    chip.onclick = () => { chip.classList.toggle('active'); state.badges.has(b) ? state.badges.delete(b) : state.badges.add(b); render(); };
+    grid.appendChild(chip);
+  });
+}
+
+// ---- Features ----
+function renderFeatures(){
+  const el = document.getElementById('featuresList');
+  el.innerHTML = '';
+  state.features.forEach((f,i) => {
+    const row = document.createElement('div');
+    row.className = 'feature-row';
+    row.innerHTML = `<input type="text" value="${esc(f)}" placeholder="Feature ${i+1}" data-fi="${i}">` +
+      (state.features.length > 1 ? `<button class="remove-btn" data-fi="${i}">×</button>` : '');
+    el.appendChild(row);
+  });
+  el.querySelectorAll('input').forEach(inp => inp.oninput = () => { state.features[+inp.dataset.fi] = inp.value; render(); });
+  el.querySelectorAll('.remove-btn').forEach(btn => btn.onclick = () => { state.features.splice(+btn.dataset.fi,1); renderFeatures(); render(); });
+}
+document.getElementById('addFeature').onclick = () => { state.features.push(''); renderFeatures(); render(); };
+
+// ---- FAQ ----
+function renderFaqs(){
+  const el = document.getElementById('faqList');
+  el.innerHTML = '';
+  state.faqs.forEach((f,i) => {
+    const row = document.createElement('div');
+    row.className = 'faq-row';
+    row.style.flexDirection = 'column';
+    row.style.alignItems = 'stretch';
+    row.innerHTML = `<input type="text" value="${esc(f.q)}" placeholder="Question" data-fqi="${i}">` +
+      `<input type="text" value="${esc(f.a)}" placeholder="Answer" data-fai="${i}" style="margin-top:.3rem">` +
+      `<button class="remove-btn" data-fri="${i}" style="align-self:flex-end;margin-top:.2rem">×</button>`;
+    el.appendChild(row);
+  });
+  el.querySelectorAll('[data-fqi]').forEach(inp => inp.oninput = () => { state.faqs[+inp.dataset.fqi].q = inp.value; render(); });
+  el.querySelectorAll('[data-fai]').forEach(inp => inp.oninput = () => { state.faqs[+inp.dataset.fai].a = inp.value; render(); });
+  el.querySelectorAll('.remove-btn').forEach(btn => btn.onclick = () => { state.faqs.splice(+btn.dataset.fri,1); renderFaqs(); render(); });
+}
+document.getElementById('addFaq').onclick = () => { state.faqs.push({q:'',a:''}); renderFaqs(); render(); };
+
+// ---- Toggles ----
+document.querySelectorAll('.toggle').forEach(t => {
+  t.onclick = () => {
+    const k = t.dataset.key;
+    state.toggles[k] = !state.toggles[k];
+    t.classList.toggle('on', state.toggles[k]);
+    if(k === 'faq'){
+      document.getElementById('faqSection').style.display = state.toggles.faq ? '' : 'none';
+      if(state.toggles.faq && !state.faqs.length) { state.faqs = FAQ_DEFAULTS.map(f => ({...f})); renderFaqs(); }
+    }
+    render();
+  };
+});
+
+// ---- Templates ----
+document.querySelectorAll('#templateTabs .tab').forEach(tab => {
+  tab.onclick = () => {
+    document.querySelectorAll('#templateTabs .tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    applyTemplate(TEMPLATES[tab.dataset.tpl]);
+  };
+});
+
+function applyTemplate(tpl){
+  if(!tpl || !tpl.projectName) return;
+  document.getElementById('projectName').value = tpl.projectName || '';
+  document.getElementById('tagline').value = tpl.tagline || '';
+  document.getElementById('description').value = tpl.description || '';
+  document.getElementById('pkgManager').value = tpl.pkgManager || 'npm';
+  document.getElementById('installCmd').value = tpl.installCmd || '';
+  document.getElementById('screenshotUrl').value = tpl.screenshotUrl || '';
+  document.getElementById('license').value = tpl.license || 'MIT';
+  document.getElementById('authorName').value = tpl.authorName || '';
+  document.getElementById('githubUrl').value = tpl.githubUrl || '';
+  state.features = tpl.features ? [...tpl.features] : ['',''];
+  state.badges = new Set(tpl.badges || []);
+  if(tpl.toggles){
+    Object.keys(tpl.toggles).forEach(k => {
+      state.toggles[k] = tpl.toggles[k];
+      const el = document.querySelector(`.toggle[data-key="${k}"]`);
+      if(el) el.classList.toggle('on', state.toggles[k]);
+    });
+    if(state.toggles.faq && !state.faqs.length) { state.faqs = FAQ_DEFAULTS.map(f=>({...f})); }
+    document.getElementById('faqSection').style.display = state.toggles.faq ? '' : 'none';
+  }
+  initBadges();
+  renderFeatures();
+  renderFaqs();
+  render();
+}
+
+// ---- Markdown Generation ----
+function esc(s){ return (s||'').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function generateMd(){
+  const v = id => document.getElementById(id).value.trim();
+  let md = '';
+
+  // Title
+  const name = v('projectName');
+  const tagline = v('tagline');
+  if(name) md += `# ${name}\n\n`;
+  if(tagline) md += `> ${tagline}\n\n`;
+
+  // Badges
+  if(state.badges.size){
+    const lines = [];
+    state.badges.forEach(b => lines.push(`![${b}](${badgeUrl(b)})`));
+    md += lines.join(' ') + '\n\n';
+  }
+
+  // Description
+  const desc = v('description');
+  if(desc) md += `${desc}\n\n`;
+
+  // Screenshot
+  const ss = v('screenshotUrl');
+  const ssAlt = v('screenshotAlt') || 'Screenshot';
+  if(ss) md += `## Demo\n\n![${ssAlt}](${ss})\n\n`;
+
+  // Installation
+  const inst = v('installCmd');
+  if(inst){
+    md += `## Installation\n\n\`\`\`bash\n${inst}\n\`\`\`\n\n`;
+  }
+
+  // Features
+  const feats = state.features.filter(f=>f.trim());
+  if(feats.length){
+    md += `## Features\n\n`;
+    feats.forEach(f => md += `- ${f}\n`);
+    md += '\n';
+  }
+
+  // Usage
+  if(name){
+    md += `## Usage\n\n\`\`\`bash\n${name} --help\n\`\`\`\n\n`;
+  }
+
+  // API
+  if(state.toggles.api){
+    md += `## API Documentation\n\n`;
+    md += `| Method | Endpoint | Description |\n|--------|----------|-------------|\n`;
+    md += `| GET | \`/api/items\` | List all items |\n| POST | \`/api/items\` | Create an item |\n| GET | \`/api/items/:id\` | Get item by ID |\n| PUT | \`/api/items/:id\` | Update item |\n| DELETE | \`/api/items/:id\` | Delete item |\n\n`;
+  }
+
+  // FAQ
+  if(state.toggles.faq && state.faqs.length){
+    md += `## FAQ\n\n`;
+    state.faqs.forEach(f => {
+      if(f.q.trim()) md += `### ${f.q}\n\n${f.a}\n\n`;
+    });
+  }
+
+  // Contributing
+  if(state.toggles.contrib){
+    md += `## Contributing\n\nContributions are welcome! Please follow these steps:\n\n1. Fork the repository\n2. Create a feature branch (\`git checkout -b feature/amazing-feature\`)\n3. Commit your changes (\`git commit -m 'Add amazing feature'\`)\n4. Push to the branch (\`git push origin feature/amazing-feature\`)\n5. Open a Pull Request\n\n`;
+  }
+
+  // License
+  const lic = v('license');
+  if(lic){
+    md += `## License\n\nThis project is licensed under the ${lic} License — see the [LICENSE](LICENSE) file for details.\n\n`;
+  }
+
+  // Author
+  const author = v('authorName');
+  const gh = v('githubUrl');
+  const web = v('websiteUrl');
+  if(author || gh){
+    md += `## Author\n\n`;
+    if(author) md += `**${author}**\n\n`;
+    if(gh) md += `- GitHub: [${gh.replace('https://github.com/','')}](${gh})\n`;
+    if(web) md += `- Website: [${web}](${web})\n`;
+    md += '\n';
+  }
+
+  // Contact
+  const email = v('contactEmail');
+  if(email){
+    md += `## Contact\n\nFor questions or feedback, reach out at [${email}](mailto:${email}).\n\n`;
+  }
+
+  // Cross-links
+  if(gh){
+    md += `---\n\n[⬆ Back to top](#${name ? name.toLowerCase().replace(/[^a-z0-9]/g,'') : 'top'})\n\n`;
+  }
+
+  return md;
+}
+
+// ---- Simple Markdown to HTML ----
+function mdToHtml(md){
+  let html = md
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    // code blocks
+    .replace(/```(\w*)\n([\s\S]*?)```/g, (_,lang,code) => `<pre><code>${code}</code></pre>`)
+    // inline code
+    .replace(/`([^`]+)`/g, '<code>$1</code>')
+    // headings
+    .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+    .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+    .replace(/^# (.+)$/gm, '<h1>$1</h1>')
+    // blockquote
+    .replace(/^&gt; (.+)$/gm, '<blockquote>$1</blockquote>')
+    // hr
+    .replace(/^---$/gm, '<hr>')
+    // bold
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    // links
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>')
+    // images
+    .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" loading="lazy">')
+    // table
+    .replace(/^\|(.+)\|$/gm, (m) => {
+      const cells = m.split('|').filter(c=>c.trim());
+      return '<tr>' + cells.map(c => `<td>${c.trim()}</td>`).join('') + '</tr>';
+    })
+    // list
+    .replace(/^- (.+)$/gm, '<li>$1</li>')
+    // numbered list
+    .replace(/^\d+\. (.+)$/gm, '<li>$1</li>')
+    // paragraphs (loose lines)
+    .replace(/^(?!<[a-z]|$)(.+)$/gm, '<p>$1</p>')
+    // wrap consecutive li
+    .replace(/(<li>[\s\S]*?<\/li>)/g, (match) => match);
+
+  // wrap tables
+  html = html.replace(/((<tr>[\s\S]*?<\/tr>\s*)+)/g, '<table>$1</table>');
+  // wrap loose li groups in ul
+  html = html.replace(/((?:<li>.*<\/li>\s*)+)/g, '<ul>$1</ul>');
+
+  return html;
+}
+
+// ---- Render ----
+function render(){
+  const md = generateMd();
+  if(state.rawView){
+    document.getElementById('previewBody').style.display = 'none';
+    document.getElementById('rawMd').style.display = '';
+    document.getElementById('rawMd').textContent = md;
+  } else {
+    document.getElementById('previewBody').style.display = '';
+    document.getElementById('rawMd').style.display = 'none';
+    document.getElementById('previewBody').innerHTML = mdToHtml(md);
+  }
+}
+
+// ---- Live input binding ----
+['projectName','tagline','description','installCmd','screenshotUrl','screenshotAlt','license','authorName','githubUrl','websiteUrl','contactEmail'].forEach(id => {
+  document.getElementById(id).oninput = render;
+});
+document.getElementById('pkgManager').onchange = function(){
+  const v = this.value;
+  const name = document.getElementById('projectName').value.trim() || 'my-project';
+  const cmds = {npm:`npm install ${name}`,pip:`pip install ${name}`,cargo:`cargo add ${name}`,go:`go get ${name}`,brew:`brew install ${name}`,custom:''};
+  document.getElementById('installCmd').value = cmds[v] || '';
+  render();
+};
+
+// ---- Buttons ----
+document.getElementById('copyMd').onclick = () => {
+  navigator.clipboard.writeText(generateMd()).then(() => showToast('Copied to clipboard!'));
+};
+document.getElementById('downloadMd').onclick = () => {
+  const blob = new Blob([generateMd()], {type:'text/markdown'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'README.md';
+  a.click();
+  URL.revokeObjectURL(a.href);
+  showToast('README.md downloaded!');
+};
+document.getElementById('toggleView').onclick = () => {
+  state.rawView = !state.rawView;
+  document.getElementById('toggleView').textContent = state.rawView ? '👁 Rendered Preview' : '👁 Raw Markdown';
+  render();
+};
+
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+// ---- Init ----
+initBadges();
+renderFeatures();
+render();
+</script>
+</body>
+</html>
